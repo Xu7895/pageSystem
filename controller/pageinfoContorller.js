@@ -27,7 +27,7 @@ exports.getAllStore = async (req, res) => {
 exports.getStoreByName = async (req, res) => {
     try {
         // 1、获取请求中的仓库名称
-        const { dname } = req.query; 
+        const { dname } = req.body; 
 
         // 2、未传入仓库名称，返回错误
         if (!dname) {
@@ -174,7 +174,7 @@ exports.updateStore = async (req, res) => {
 exports.deleteStore = async (req, res) => {
     try {
         // 1、获取请求中的仓库 ID
-        const { id } = req.query; // 假设前端通过 URL 参数传递仓库 ID
+        const { id } = req.body; // 假设前端通过 URL 参数传递仓库 ID
         
         // 2、检查仓库是否存在
         const [store] = await db.query('SELECT * FROM pageinfo WHERE id = ?', [id]);

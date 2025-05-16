@@ -10,6 +10,8 @@ const app = express()
 
 app.use(cors());
 app.use(bodyParser.json())
+// 配置静态文件服务，使前端可以访问上传的图片
+app.use('/api/upload/img', express.static('upload/img'));
 app.use('/api', routes);
 
 const PORT = process.env.PORT || 3000;

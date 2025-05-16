@@ -1,9 +1,7 @@
 // 材料类型表
 
 const express = require('express')
-
 const router = express.Router();
-
 const matTypeController = require('../controller/matTypeController')
 
 // 获取所有材料类型

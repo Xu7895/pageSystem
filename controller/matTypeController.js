@@ -34,15 +34,16 @@ exports.creatematType = async (req, res) => {
                 result: {}
             });
         }
-
+        console.log('继续执行');
+        
         // 插入新材料类型
         const result = await db.query(
             'INSERT INTO material_type (tname, introduce) VALUES (?, ?)', 
             [tname, introduce]
         );
 
-        res.status(201).json({
-            code: 201,
+        res.status(200).json({
+            code: 200,
             msg: '材料类型创建成功',
             result: { id: result.insertId, tname, introduce }
         });
@@ -62,8 +63,7 @@ exports.creatematType = async (req, res) => {
 // 修改材料类型
 exports.updatematType = async (req, res) => {
     try {
-        const { id } = req.query; // 获取材料类型 ID
-        const { tname, introduce } = req.body; // 获取新的名称和介绍
+        const { id, tname, introduce } = req.body; // 获取新的名称和介绍
 
         // 检查材料类型是否存在
         const [matType] = await db.query('SELECT * FROM material_type WHERE id = ?', [id]);
@@ -101,8 +101,9 @@ exports.updatematType = async (req, res) => {
 // 删除材料类型
 exports.deletematType = async (req, res) => {
     try {
-        const { id } = req.query; // 获取材料类型 ID
-
+        const { id } = req.body; // 获取材料类型 ID
+        console.log(id);
+        
         // 检查材料类型是否存在
         const [matType] = await db.query('SELECT * FROM material_type WHERE id = ?', [id]);
         if (matType.length === 0) {
